@@ -42,6 +42,9 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.tree.MutableTreeNode;
 
 import org.testeoa.dutra.LeoLoader;
+import org.testeoa.dutra.TMTreeHandler;
+import org.testeoa.dutra.TMTreeRoot;
+import org.testeoa.dutra.TMViewer;
 import org.testeoa.dutra.Unidade;
 import org.testeoa.estatica.AnaliseEstatica;
 import org.testeoa.excecoes.ExAnaliseEstatica;
@@ -88,6 +91,8 @@ public class GUI extends JFrame {
 	JButton btExec;
 	JButton btRem;
 	JButton btImpLeo;
+	
+	TMTreeRoot TMRoot = new TMTreeRoot();
 
 	public GUI() {
 		super("TesteOA");
@@ -386,16 +391,21 @@ public class GUI extends JFrame {
 				isClasse = false;
 				isAspecto = false;
 				try {
-					System.out.println("bloco classe - "+ lista.get(cont).getURL());
-					tmpClasse = AnaliseEstatica.lerClasse(lista.get(cont)
-							.getURL());
+					tmpClasse = AnaliseEstatica.lerClasse(lista.get(cont).getURL());
+					for (Metodo m : tmpClasse.getMetodos()) {
+						TMRoot.addPackage(lista.get(cont).getPacote()).addClass(lista.get(cont).getNome(), true).addNode(m.getNome(), m.getDesc(), true);	
+					}
 					isClasse = true;
 				} catch (ExAnaliseEstatica eclass) {
-					System.out.println("1");
 					try {
-						System.out.println("bloco aspecto - "+ lista.get(cont).getURL());
 						tmpAsp = AnaliseEstatica.lerAspecto(lista.get(cont)
 								.getURL());
+						for (Metodo m : tmpAsp.getMetodos()) {
+							TMRoot.addPackage(lista.get(cont).getPacote()).addClass(lista.get(cont).getNome(), false).addNode(m.getNome(), m.getDesc(), true);	
+						}
+						for (Adendo a : tmpAsp.getAdendos()) {
+							TMRoot.addPackage(lista.get(cont).getPacote()).addClass(lista.get(cont).getNome(), false).addNode(a.getNome(), a.getDesc(), false);	
+						}
 						isAspecto = true;
 					} catch (ExAnaliseEstatica easp) {
 						easp.printStackTrace();
@@ -424,6 +434,9 @@ public class GUI extends JFrame {
 
 			}
 			np.expandir();
+			TMViewer tViewer = new TMViewer(nome, TMRoot);
+			conteudo.add(tViewer);
+			tViewer.setVisible(true);
 		}
 
 	}
