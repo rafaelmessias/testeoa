@@ -24,6 +24,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,6 +41,11 @@ import javax.swing.border.TitledBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.tree.MutableTreeNode;
 
+import org.testeoa.dutra.LeoLoader;
+import org.testeoa.dutra.Unidade;
+import org.testeoa.estatica.AnaliseEstatica;
+import org.testeoa.excecoes.ExAnaliseEstatica;
+import org.testeoa.excecoes.ExProjeto;
 import org.testeoa.gui.arvore.ArvoreProjetos;
 import org.testeoa.gui.arvore.NodeAP;
 import org.testeoa.gui.arvore.NodeAdendo;
@@ -316,8 +322,7 @@ public class GUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("teste");
-				
+				doLeo();
 			}
 		});
 		
@@ -350,6 +355,55 @@ public class GUI extends JFrame {
 		setVisible(true);
 	}
 	
+	private void doLeo() {
+				
+		String title = "Novo Projeto";
+		int mType = JOptionPane.QUESTION_MESSAGE;
+		String nome = JOptionPane.showInputDialog(
+				GUI.instancia, "Nome do Projeto: ", title, mType);
+		if (nome != null) {
+			
+			LeoLoader loader = new LeoLoader();
+			loader.loadJar();
+			
+			// Modelo
+			Projeto p = new Projeto(nome);
+			Ambiente.inserirProjeto(p);
+			// GUI
+			NodeProjeto np = new NodeProjeto(arvore, p);
+			MutableTreeNode root = (MutableTreeNode)arvore.getModel().getRoot();
+			arvore.getModel().insertNodeInto(np, root, root.getChildCount());
+			// Bug?! o primeiro projeto não aparece na tela...
+			if (root.getChildCount() == 1) {
+				arvore.getModel().setRoot(root);
+			}
+			np.abrir();
+			
+			Classe tmpClasse = null;
+			Classe classe;
+			
+			ArrayList<Unidade> lista = loader.getLista();
+			for (int cont=0; cont<lista.size(); cont++) {
+				try {
+					tmpClasse = AnaliseEstatica.lerClasse(lista.get(cont).getURL());
+				} catch (ExAnaliseEstatica e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					np.getUserObject().inserir(tmpClasse);
+				} catch (ExProjeto e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// GUI
+				np.inserirNodeClasse(tmpClasse);
+			}
+			np.expandir();
+		}	
+		
+	}
+
 	public void atualizarBarra(Object sel) {
 		btAbProj.setEnabled(false);
 		btFeProj.setEnabled(false);

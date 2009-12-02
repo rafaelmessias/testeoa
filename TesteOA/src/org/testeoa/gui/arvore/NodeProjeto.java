@@ -267,7 +267,7 @@ public class NodeProjeto extends NodeAP {
 		}
 	}
 	
-	private void inserirNodeClasse(Classe c) {
+	public void inserirNodeClasse(Classe c) {
 		int i = 0;
 		for(; i < getChildCount(); i++) {
 			if (getChildAt(i) instanceof NodeAspecto) {				
@@ -283,7 +283,7 @@ public class NodeProjeto extends NodeAP {
 				i);
 	}
 	
-	private void inserirNodeAspecto(Aspecto a) {
+	public void inserirNodeAspecto(Aspecto a) {
 		int i = 0;
 		for(; i < getChildCount(); i++) {
 			if (getChildAt(i) instanceof NodeTeste) {				

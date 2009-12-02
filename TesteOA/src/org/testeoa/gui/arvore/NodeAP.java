@@ -57,7 +57,7 @@ public abstract class NodeAP extends DefaultMutableTreeNode {
 		return icone;
 	}
 	
-	void expandir() {
+	public void expandir() {
 		arvore.expandPath(new TreePath(getPath()));
 	}
 	
