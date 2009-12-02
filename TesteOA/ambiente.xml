@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ambiente>
+<projeto nome="teste">
+<classe nome="exemplo.Terminal">
+<metodo desc="(IIF)V" nome="transferencia"/>
+<metodo desc="(Lexemplo/Conta;)V" nome="inserirConta"/>
+<metodo desc="(I)V" nome="removerConta"/>
+<metodo desc="(I)Lexemplo/Conta;" nome="getConta"/>
+</classe>
+<aspecto nome="exemplo.Registro">
+<adendo num="1" tipo="afterReturning"/>
+<adendo num="2" tipo="afterReturning"/>
+</aspecto>
+<teste caso="exemplo.TesteTransferencia" tipo="0">
+<unidade desc="(IIF)V" nome="transferencia" owner="exemplo.Terminal" tipo="metodo"/>
+<criterio tipo="9"/>
+<criterio tipo="12"/>
+<criterio tipo="11"/>
+<criterio tipo="10"/>
+<criterio tipo="0"/>
+<criterio tipo="3"/>
+<criterio tipo="2"/>
+<criterio tipo="1"/>
+</teste>
+</projeto>
+</ambiente>

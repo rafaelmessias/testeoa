@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: lib\aspectjrt.jar lib\asm-all-3.0.jar lib\jgraph.jar lib\junit-4.4.jar .
+Main-Class: org.testeoa.gui.GUI
+
