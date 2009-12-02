@@ -277,10 +277,12 @@ public class NodeProjeto extends NodeAP {
 				break;
 			}
 		}
+		
 		arvore.getModel().insertNodeInto(
 				new NodeClasse(arvore, c),
 				this,
 				i);
+	
 	}
 	
 	public void inserirNodeAspecto(Aspecto a) {

@@ -55,8 +55,7 @@ public class LeoLoader {
         try {
 			ClassPathHacker.addFile(file);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
         
     }

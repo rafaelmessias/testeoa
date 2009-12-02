@@ -6,32 +6,16 @@
 
 
 
-<projeto nome="teste">
-<classe nome="tcc2009.ClassNode">
-<metodo desc="()Ljava/lang/String;" nome="getClazzName"/>
-<metodo desc="()Ljava/lang/String;" nome="getClazzPackage"/>
-<metodo desc="(Ljava/lang/String;)V" nome="setClazzName"/>
-<metodo desc="(Ljava/lang/String;)V" nome="setClazzPackage"/>
-<metodo desc="(Ljavassist/CtClass;)V" nome="setClazz"/>
-<metodo desc="()Ljavassist/CtClass;" nome="getClazz"/>
-<metodo desc="(Ljava/lang/String;)V" nome="setClazzFilePath"/>
-<metodo desc="()Ljava/lang/String;" nome="getClazzFilePath"/>
-<metodo desc="()Ljava/lang/String;" nome="getClazzFileName"/>
-<metodo desc="()Ljava/lang/String;" nome="toString"/>
-<metodo desc="()Ljava/lang/String;" nome="getMyURL"/>
-</classe>
-<classe nome="tcc2009.MainFrame">
-<metodo desc="()V" nome="initComponents"/>
-<metodo desc="(Ljava/awt/event/ActionEvent;)V" nome="jBtnAbrirActionPerformed"/>
-<metodo desc="()Ljava/io/File;" nome="getFile"/>
-<metodo desc="([Ljava/lang/String;)V" nome="main"/>
-<metodo desc="(Ltcc2009/MainFrame;Ljava/awt/event/ActionEvent;)V" nome="access$000"/>
-<metodo desc="(Ltcc2009/MainFrame;)Ljavax/swing/JTree;" nome="access$100"/>
-<metodo desc="(Ltcc2009/MainFrame;)Ljavax/swing/JTextArea;" nome="access$200"/>
-</classe>
-<classe nome="tcc2009.ZipClassLoader">
-<metodo desc="()Ljava/util/zip/ZipFile;" nome="getZipFile"/>
-<metodo desc="(Ljava/lang/String;)Ljava/lang/Class;" nome="findClass"/>
-</classe>
-</projeto>
+
+
+
+
+
+
+
+
+
+
+
+
 </ambiente>

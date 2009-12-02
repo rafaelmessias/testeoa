@@ -24,7 +24,6 @@ public class ExcecaoExportarProjeto extends Exception {
 
 	public ExcecaoExportarProjeto(String message, Throwable cause) {
 		super(message, cause);
-		// TODO Auto-generated constructor stub
 	}
 
 }

@@ -43,7 +43,6 @@ public class TesteAdendoMetodo extends TesteInterMetodoAdendo {
 
 	@Override
 	public String getTipo() {
-		// TODO Auto-generated method stub
 		return "Adendo-Método";
 	}
 	

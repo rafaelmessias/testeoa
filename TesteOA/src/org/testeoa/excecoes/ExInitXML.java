@@ -24,7 +24,6 @@ public class ExInitXML extends Exception {
 
 	public ExInitXML(Throwable arg0) {
 		super(arg0);
-		// TODO Auto-generated constructor stub
 	}
 	
 	

@@ -63,7 +63,6 @@ public class DUGE extends DUG {
 	// operações com vértices
 	@Override
 	public void inserir(Vertice vertice) {
-		// TODO Auto-generated method stub
 		super.inserir(vertice);
 		verticesDependentesExcecao.add(vertice);
 	}

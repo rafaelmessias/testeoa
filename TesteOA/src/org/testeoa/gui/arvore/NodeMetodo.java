@@ -41,7 +41,7 @@ public class NodeMetodo extends NodeAP {
 	ViewUnidade view;
 
 	public NodeMetodo(ArvoreProjetos a, Metodo m) {
-		super(a);
+		super(a);		
 		setUserObject(m);
 		view = new ViewUnidade(m);
 		icone = new ImageIcon("fig/m.png");
