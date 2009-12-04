@@ -385,6 +385,10 @@ public class GUI extends JFrame {
 			Aspecto tmpAsp = null;
 			boolean isClasse = false;
 			boolean isAspecto = false;
+			String tPacote = null;
+			String tClasse = null;
+			String tMetodo = null;
+			String tMetodoDesc = null;
 
 			ArrayList<Unidade> lista = loader.getLista();
 			for (int cont = 0; cont < lista.size(); cont++) {
@@ -393,7 +397,11 @@ public class GUI extends JFrame {
 				try {
 					tmpClasse = AnaliseEstatica.lerClasse(lista.get(cont).getURL());
 					for (Metodo m : tmpClasse.getMetodos()) {
-						TMRoot.addPackage(lista.get(cont).getPacote()).addClass(lista.get(cont).getNome(), true).addNode(m.getNome(), m.getDesc(), true);	
+						tPacote = lista.get(cont).getPacote();
+						tClasse = lista.get(cont).getNome();
+						tMetodo = m.getNome();
+						tMetodoDesc = m.getDesc();
+						TMRoot.addPackage(tPacote).addClass(tClasse, true).addNode(tMetodo, tMetodoDesc, true);	
 					}
 					isClasse = true;
 				} catch (ExAnaliseEstatica eclass) {
@@ -401,10 +409,18 @@ public class GUI extends JFrame {
 						tmpAsp = AnaliseEstatica.lerAspecto(lista.get(cont)
 								.getURL());
 						for (Metodo m : tmpAsp.getMetodos()) {
-							TMRoot.addPackage(lista.get(cont).getPacote()).addClass(lista.get(cont).getNome(), false).addNode(m.getNome(), m.getDesc(), true);	
+							tPacote = lista.get(cont).getPacote();
+							tClasse = lista.get(cont).getNome();
+							tMetodo = m.getNome();
+							tMetodoDesc = m.getDesc();
+							TMRoot.addPackage(tPacote).addClass(tClasse, false).addNode(tMetodo, tMetodoDesc, true);	
 						}
 						for (Adendo a : tmpAsp.getAdendos()) {
-							TMRoot.addPackage(lista.get(cont).getPacote()).addClass(lista.get(cont).getNome(), false).addNode(a.getNome(), a.getDesc(), false);	
+							tPacote = lista.get(cont).getPacote();
+							tClasse = lista.get(cont).getNome();
+							tMetodo = a.getNome();
+							tMetodoDesc = a.getDesc();
+							TMRoot.addPackage(tPacote).addClass(tClasse, false).addNode(tMetodo, tMetodoDesc, false);	
 						}
 						isAspecto = true;
 					} catch (ExAnaliseEstatica easp) {

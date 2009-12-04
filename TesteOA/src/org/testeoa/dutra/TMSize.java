@@ -7,9 +7,12 @@ import treemap.TMNode;
 public class TMSize implements TMComputeSize {
 
 	@Override
-	public float getSize(TMNode arg0) throws TMExceptionBadTMNodeKind {
-		// TODO Auto-generated method stub
-		return 1.0f;
+	public float getSize(TMNode tNode) throws TMExceptionBadTMNodeKind {
+		if (tNode instanceof TMTreeClass) {
+			return 10.0f;
+		} else {
+			return 1.0f;
+		}
 	}
 
 	@Override

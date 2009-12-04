@@ -19,6 +19,8 @@ public class TMDraw implements TMComputeDraw {
 			} else {
 				return Color.BLUE;
 			}
+		} else if (tAdapter.getNode() instanceof TMTreeClass) {
+			return Color.GREEN;
 		}
 		return Color.WHITE;
 	}

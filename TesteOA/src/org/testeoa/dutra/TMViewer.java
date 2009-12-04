@@ -1,6 +1,8 @@
 package org.testeoa.dutra;
 
 import javax.swing.JInternalFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 
 import treemap.TMView;
 import treemap.TreeMap;
@@ -11,6 +13,7 @@ public class TMViewer extends JInternalFrame {
 	private TMTreeRoot root;
 	private TreeMap tMap;
 	private TMView tView;
+	private JTabbedPane tabbedPane;
 	
 	public TMViewer(String nome, TMTreeRoot root) {
 		super ("", true, true, true, true);
@@ -18,12 +21,28 @@ public class TMViewer extends JInternalFrame {
 		this.root = root;
 		this.nome = nome;
 		
+		setTitle(nome);
+		
+		tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM, JTabbedPane.SCROLL_TAB_LAYOUT);
+		
+		
+		
 		tMap = new TreeMap(this.root);
 		tView = tMap.getView(new TMSize(), new TMDraw());
-		setContentPane(tView);
+		
+		
+		
+		tabbedPane.addTab("TreeMap", new JScrollPane(tView));
+		tabbedPane.addTab("Configurações", new JScrollPane(tView.getAlgorithm().getConfiguringView()));
+		
+		getContentPane().add(tabbedPane);
+		
 		pack();
 		tView.setVisible(true);
 		tView.setAlgorithm("SQUARIFIED");
+		tView.getAlgorithm().setBorderSize(15);
+		tView.getAlgorithm().setBorderOnCushion(true);
+		tView.getAlgorithm().setCushion(true);
 	}
 	
 	public String getNome() {
