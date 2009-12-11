@@ -58,7 +58,8 @@
 
 
 
-<projeto nome="a">
+
+<projeto nome="b">
 <classe nome="exemplo.Conta">
 <metodo desc="()Ljava/lang/String;" nome="getTitular"/>
 <metodo desc="()I" nome="getNumero"/>
@@ -90,5 +91,27 @@
 <criterio tipo="2"/>
 <criterio tipo="1"/>
 </teste>
+</projeto>
+<projeto nome="c">
+<classe nome="exemplo.Conta">
+<metodo desc="()Ljava/lang/String;" nome="getTitular"/>
+<metodo desc="()I" nome="getNumero"/>
+<metodo desc="()F" nome="getSaldo"/>
+<metodo desc="(F)V" nome="saque"/>
+<metodo desc="(F)V" nome="deposito"/>
+</classe>
+<classe nome="exemplo.Terminal">
+<metodo desc="(IIF)V" nome="transferencia"/>
+<metodo desc="(Lexemplo/Conta;)V" nome="inserirConta"/>
+<metodo desc="(I)V" nome="removerConta"/>
+<metodo desc="(I)Lexemplo/Conta;" nome="getConta"/>
+</classe>
+<classe nome="exemplo.excecoes.ExcecaoContaInexistente">
+<metodo desc="()I" nome="getNumero"/>
+</classe>
+<classe nome="exemplo.excecoes.ExcecaoSaldoInsuficiente">
+<metodo desc="()I" nome="getNumConta"/>
+<metodo desc="()F" nome="getValor"/>
+</classe>
 </projeto>
 </ambiente>

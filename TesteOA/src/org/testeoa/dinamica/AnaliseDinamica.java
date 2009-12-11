@@ -57,13 +57,6 @@ public class AnaliseDinamica {
 	public static void registrar(AODU g) {
 		grafo = g;
 		unidades.add(grafo.getUnidade());
-		Integer cont = contagem.get(grafo.getUnidade().getNome());
-		if (cont == null) {
-			cont = 1;
-		} else {
-			cont++;
-		}
-		contagem.put(grafo.getUnidade().getNome(), cont);
 	}
 
 	public static void registrar(AODUComb g) {
@@ -89,6 +82,15 @@ public class AnaliseDinamica {
 	}
 
 	public static void UNIDADE(String owner, String nome, String desc) {
+		// Leo
+		Integer cont = contagem.get(owner+"-"+nome+"-"+desc);
+		if (cont == null) {
+			cont = 1;
+		} else {
+			cont++;
+		}
+		contagem.put(owner+"-"+nome+"-"+desc, cont);
+		// fim Leo
 		for (Metodo u : unidades) {
 			if (u.getClasse().getNome().equals(owner)) {
 				if (u.getNome().equals(nome) && u.getDesc().equals(desc)) {
