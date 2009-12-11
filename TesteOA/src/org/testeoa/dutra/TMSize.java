@@ -4,6 +4,10 @@ import treemap.TMComputeSize;
 import treemap.TMExceptionBadTMNodeKind;
 import treemap.TMNode;
 
+//import net.bouthier.treemapSwing.TMComputeSize;
+//import net.bouthier.treemapSwing.TMExceptionBadTMNodeKind;
+//import net.bouthier.treemapSwing.TMNode;
+
 public class TMSize implements TMComputeSize {
 
 	@Override

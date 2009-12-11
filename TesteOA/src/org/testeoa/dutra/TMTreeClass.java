@@ -6,6 +6,9 @@ import java.util.Vector;
 import treemap.TMNode;
 import treemap.TMUpdater;
 
+//import net.bouthier.treemapSwing.TMNode;
+//import net.bouthier.treemapSwing.TMUpdater;
+
 public class TMTreeClass implements TMNode {
 
 	Vector<TMTreeNode> children;
@@ -46,11 +49,15 @@ public class TMTreeClass implements TMNode {
 	}
 	
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 	
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getDescription() {
+		return "Classe: " + nome.substring(0, nome.indexOf(".class"));
 	}
 
 }

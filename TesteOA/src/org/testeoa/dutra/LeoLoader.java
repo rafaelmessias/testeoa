@@ -97,4 +97,8 @@ public class LeoLoader {
     public ArrayList<Unidade> getLista() {
 		return lista;
 	}
+    
+    public String getFileName() {
+    	return file.getName();
+    }
 }

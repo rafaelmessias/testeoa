@@ -7,6 +7,9 @@ import javax.swing.JTabbedPane;
 import treemap.TMView;
 import treemap.TreeMap;
 
+//import net.bouthier.treemapSwing.TMView;
+//import net.bouthier.treemapSwing.TreeMap;
+
 public class TMViewer extends JInternalFrame {
 	
 	private String nome;
@@ -29,20 +32,18 @@ public class TMViewer extends JInternalFrame {
 		
 		tMap = new TreeMap(this.root);
 		tView = tMap.getView(new TMSize(), new TMDraw());
+		tView.setAlgorithm("SQUARIFIED");		
 		
-		
+		tView.getAlgorithm().setBorderSize(13);
+		tView.getAlgorithm().setBorderOnCushion(true);
+		tView.getAlgorithm().setCushion(true);
 		
 		tabbedPane.addTab("TreeMap", new JScrollPane(tView));
 		tabbedPane.addTab("Configurações", new JScrollPane(tView.getAlgorithm().getConfiguringView()));
 		
 		getContentPane().add(tabbedPane);
 		
-		pack();
-		tView.setVisible(true);
-		tView.setAlgorithm("SQUARIFIED");
-		tView.getAlgorithm().setBorderSize(15);
-		tView.getAlgorithm().setBorderOnCushion(true);
-		tView.getAlgorithm().setCushion(true);
+		
 	}
 	
 	public String getNome() {

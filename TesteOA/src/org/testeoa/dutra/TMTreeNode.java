@@ -6,6 +6,9 @@ import java.util.Vector;
 import treemap.TMNode;
 import treemap.TMUpdater;
 
+//import net.bouthier.treemapSwing.TMNode;
+//import net.bouthier.treemapSwing.TMUpdater;
+
 public class TMTreeNode implements TMNode {
 
 	String nome;

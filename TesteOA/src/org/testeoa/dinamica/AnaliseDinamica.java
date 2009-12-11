@@ -20,7 +20,9 @@
 
 package org.testeoa.dinamica;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
@@ -30,54 +32,62 @@ import org.testeoa.grafo.Aresta;
 import org.testeoa.grafo.Vertice;
 import org.testeoa.modelo.Metodo;
 
-
 /**
- * @author    Rafael
+ * @author Rafael
  */
 public class AnaliseDinamica {
-	
+
 	private static AODU grafo;
-	
+
 	private static Set<Metodo> unidades = new HashSet<Metodo>();
-	
+
 	private static Stack<Metodo> pilha = new Stack<Metodo>();
-	
+
 	private static Caminho caminho = new Caminho();
-	
+
+	public static Map<String, Integer> contagem = new HashMap<String, Integer>();
+
 	public static void reiniciar() {
 		grafo = null;
 		unidades = new HashSet<Metodo>();
 		pilha = new Stack<Metodo>();
 		caminho = new Caminho();
 	}
-	
+
 	public static void registrar(AODU g) {
 		grafo = g;
 		unidades.add(grafo.getUnidade());
+		Integer cont = contagem.get(grafo.getUnidade().getNome());
+		if (cont == null) {
+			cont = 1;
+		} else {
+			cont++;
+		}
+		contagem.put(grafo.getUnidade().getNome(), cont);
 	}
-	
+
 	public static void registrar(AODUComb g) {
-		registrar((AODU)g);
+		registrar((AODU) g);
 		for (AODU gs : g.getSecundarios()) {
 			unidades.add(gs.getUnidade());
 		}
 	}
-	
+
 	public static void LABEL(String label) {
-		if (pilha.peek() != null) {			
-			Vertice u = caminho.ultimoVertice();			
-			Vertice v = grafo.getVertice(label);			
-			if (v != null) {				
+		if (pilha.peek() != null) {
+			Vertice u = caminho.ultimoVertice();
+			Vertice v = grafo.getVertice(label);
+			if (v != null) {
 				Aresta a = grafo.getAresta(u, v);
-				if (a != null) {					
+				if (a != null) {
 					caminho.inserir(a);
-				}				
+				}
 				caminho.inserir(v);
 			}
-			
+
 		}
 	}
-	
+
 	public static void UNIDADE(String owner, String nome, String desc) {
 		for (Metodo u : unidades) {
 			if (u.getClasse().getNome().equals(owner)) {
@@ -89,14 +99,14 @@ public class AnaliseDinamica {
 		}
 		pilha.push(null);
 	}
-	
+
 	public static void RETORNO() {
 		pilha.pop();
 	}
-	
+
 	/**
-	 * @return  the caminho
-	 * @uml.property  name="caminho"
+	 * @return the caminho
+	 * @uml.property name="caminho"
 	 */
 	public static Caminho getCaminho() {
 		return caminho;

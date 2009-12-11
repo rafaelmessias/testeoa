@@ -41,6 +41,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.tree.MutableTreeNode;
 
+import org.testeoa.dinamica.AnaliseDinamica;
 import org.testeoa.dutra.LeoLoader;
 import org.testeoa.dutra.TMTreeHandler;
 import org.testeoa.dutra.TMTreeRoot;
@@ -92,7 +93,7 @@ public class GUI extends JFrame {
 	JButton btRem;
 	JButton btImpLeo;
 	
-	TMTreeRoot TMRoot = new TMTreeRoot();
+	TMTreeRoot TMRoot = null;
 
 	public GUI() {
 		super("TesteOA");
@@ -294,6 +295,7 @@ public class GUI extends JFrame {
 		btExec.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				((NodeTeste) arvore.getSelecionado()).executar();
+				System.out.println(AnaliseDinamica.contagem);
 			}
 		});
 		barraSup.add(btExec);
@@ -380,6 +382,8 @@ public class GUI extends JFrame {
 				arvore.getModel().setRoot(root);
 			}
 			np.abrir();
+			
+			TMRoot = new TMTreeRoot(loader.getFileName());
 
 			Classe tmpClasse = null;
 			Aspecto tmpAsp = null;

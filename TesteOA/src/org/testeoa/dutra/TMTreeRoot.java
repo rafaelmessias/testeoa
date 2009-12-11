@@ -6,12 +6,17 @@ import java.util.Vector;
 import treemap.TMNode;
 import treemap.TMUpdater;
 
+//import net.bouthier.treemapSwing.TMNode;
+//import net.bouthier.treemapSwing.TMUpdater;
+
 public class TMTreeRoot implements TMNode {
 
 	Vector<TMTreePackage> children;
+	String nome;
 
-	public TMTreeRoot() {
+	public TMTreeRoot(String nome) {
 		children = new Vector<TMTreePackage>();
+		this.nome = nome;
 	}
 
 	@Override
@@ -39,6 +44,14 @@ public class TMTreeRoot implements TMNode {
 		TMTreePackage tPackage = new TMTreePackage(nome);
 		this.children.add(tPackage);
 		return tPackage;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getNome() {
+		return nome;
 	}
 
 }
