@@ -22,6 +22,7 @@ package org.testeoa.persist;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilder;
@@ -47,6 +48,9 @@ import org.testeoa.criterios.TodosVertices;
 import org.testeoa.criterios.TodosVerticesDepExcecao;
 import org.testeoa.criterios.TodosVerticesIndepExcecao;
 import org.testeoa.criterios.TodosVerticesTransversais;
+import org.testeoa.dutra.LeoLoader;
+import org.testeoa.dutra.TMTreeRoot;
+import org.testeoa.dutra.Unidade;
 import org.testeoa.estatica.AnaliseEstatica;
 import org.testeoa.excecoes.ExAnaliseEstatica;
 import org.testeoa.excecoes.ExImportarProjeto;
@@ -118,7 +122,63 @@ public class DocumentoXML {
 	}
 	
 	public Projeto criar(Element ep) {
-		Projeto p = new Projeto(ep.getAttribute("nome"));		
+		Projeto p = new Projeto(ep.getAttribute("nome"));
+		p.setFile(ep.getAttribute("file"));
+		LeoLoader loader = new LeoLoader();
+		loader.loadJar(ep.getAttribute("file"));
+		
+		//TODO mexi aqui!!!
+		
+		GUI.TMRoot = new TMTreeRoot(loader.getFileName());
+
+		Classe tmpClasse = null;
+		Aspecto tmpAsp = null;
+		boolean isClasse = false;
+		boolean isAspecto = false;
+		String tPacote = null;
+		String tClasse = null;
+		String tMetodo = null;
+		String tMetodoDesc = null;
+
+		ArrayList<Unidade> lista = loader.getLista();
+		for (int cont = 0; cont < lista.size(); cont++) {
+			isClasse = false;
+			isAspecto = false;
+			try {
+				tmpClasse = AnaliseEstatica.lerClasse(lista.get(cont).getURL());
+				for (Metodo m : tmpClasse.getMetodos()) {
+					tPacote = lista.get(cont).getPacote();
+					tClasse = lista.get(cont).getNome();
+					tMetodo = m.getNome();
+					tMetodoDesc = m.getDesc();
+					GUI.TMRoot.addPackage(tPacote).addClass(tClasse, true).addNode(tMetodo, tMetodoDesc, true);	
+				}
+				isClasse = true;
+			} catch (ExAnaliseEstatica eclass) {
+				try {
+					tmpAsp = AnaliseEstatica.lerAspecto(lista.get(cont)
+							.getURL());
+					for (Metodo m : tmpAsp.getMetodos()) {
+						tPacote = lista.get(cont).getPacote();
+						tClasse = lista.get(cont).getNome();
+						tMetodo = m.getNome();
+						tMetodoDesc = m.getDesc();
+						GUI.TMRoot.addPackage(tPacote).addClass(tClasse, false).addNode(tMetodo, tMetodoDesc, true);	
+					}
+					for (Adendo a : tmpAsp.getAdendos()) {
+						tPacote = lista.get(cont).getPacote();
+						tClasse = lista.get(cont).getNome();
+						tMetodo = a.getNome();
+						tMetodoDesc = a.getDesc();
+						GUI.TMRoot.addPackage(tPacote).addClass(tClasse, false).addNode(tMetodo, tMetodoDesc, false);	
+					}
+					isAspecto = true;
+				} catch (ExAnaliseEstatica easp) {
+					easp.printStackTrace();
+				}
+			}
+		}	
+		
 		// cria as classes
 		NodeList cl = ep.getElementsByTagName("classe");
 		for (int ic = 0; ic < cl.getLength(); ic++) {
@@ -631,6 +691,7 @@ public class DocumentoXML {
 	private Element criarElemento(Projeto proj) {
 		Element ep = (Element) documento.createElement("projeto");
 		ep.setAttribute("nome", proj.getNome());
+		ep.setAttribute("file", proj.getFile());
 		for (Classe c : proj.getClasses()) {
 			ep.appendChild(criarElemento(c));
 		}

@@ -44,6 +44,8 @@ public class Projeto {
 	 */
 	String nome;
 	
+	String file="";
+	
 	AnaliseEstatica analise;
 	
 	Set<Aspecto> aspectos = new LinkedHashSet<Aspecto>();
@@ -82,6 +84,14 @@ public class Projeto {
 	public void fechar() {
 		analise = null;
 		aberto = false;
+	}
+	
+	public void setFile(String file) {
+		this.file = file;
+	}
+	
+	public String getFile() {
+		return this.file;
 	}
 	
 	public Classe[] getGeral() {

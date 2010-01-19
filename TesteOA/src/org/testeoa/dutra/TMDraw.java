@@ -3,6 +3,8 @@ package org.testeoa.dutra;
 import java.awt.Color;
 import java.awt.Paint;
 
+import org.testeoa.dinamica.AnaliseDinamica;
+
 import treemap.TMComputeDraw;
 import treemap.TMExceptionBadTMNodeKind;
 import treemap.TMNode;
@@ -20,12 +22,12 @@ public class TMDraw implements TMComputeDraw {
 		if (tAdapter.getNode() instanceof TMTreeNode) {
 			TMTreeNode tNode = (TMTreeNode) tAdapter.getNode();
 			if (tNode.isMetodo) {
-				return Color.RED;
+				return TMPattern.getPaint("metodo", AnaliseDinamica.maxSize, tNode.getSize());
 			} else {
-				return Color.BLUE;
+				return TMPattern.getPaint("adendo", AnaliseDinamica.maxSize, tNode.getSize());
 			}
 		} else if (tAdapter.getNode() instanceof TMTreeClass) {
-			return Color.GREEN;
+			return Color.BLUE;
 		} else if (tAdapter.getNode() instanceof TMTreePackage) {
 			return Color.ORANGE;
 		} else if (tAdapter.getNode() instanceof TMTreeRoot) {
@@ -49,22 +51,29 @@ public class TMDraw implements TMComputeDraw {
 			TMTreeRoot tRoot = (TMTreeRoot) tAdapter.getNode();
 			return tRoot.getNome();
 		} else {
-			return "***";
+			return "";
 		}
 	}
 
 	@Override
 	public Paint getTitleColor(TMNodeAdapter arg0)
 			throws TMExceptionBadTMNodeKind {
-		// TODO Auto-generated method stub
-		return Color.BLACK;
+		if (arg0.getNode() instanceof TMTreeNode) {
+			return Color.white;
+		} else {
+			return Color.black;
+
+		}
 	}
 
 	@Override
-	public String getTooltip(TMNodeAdapter arg0)
+	public String getTooltip(TMNodeAdapter tAdapter)
 			throws TMExceptionBadTMNodeKind {
-		// TODO Auto-generated method stub
-		return "*";
+		if (tAdapter.getNode() instanceof TMTreeNode) {
+			TMTreeNode tNode = (TMTreeNode) tAdapter.getNode();
+			return "Chamadas: "+(tNode.getSize()-1);
+		}
+		return "";
 	}
 
 	@Override

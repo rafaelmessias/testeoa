@@ -35,8 +35,8 @@ public class TMViewer extends JInternalFrame {
 		tView.setAlgorithm("SQUARIFIED");		
 		
 		tView.getAlgorithm().setBorderSize(13);
-		tView.getAlgorithm().setBorderOnCushion(true);
-		tView.getAlgorithm().setCushion(true);
+		tView.getAlgorithm().setBorderOnCushion(false);
+		tView.getAlgorithm().setCushion(false);
 		
 		tabbedPane.addTab("TreeMap", new JScrollPane(tView));
 		tabbedPane.addTab("Configurações", new JScrollPane(tView.getAlgorithm().getConfiguringView()));

@@ -48,6 +48,7 @@ public class ViewUnidade extends JInternalFrame {
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM, JTabbedPane.SCROLL_TAB_LAYOUT);
 		// TODO verificar por que tive que comentar essa linha aqui.
+		
 		jgraph = new JGraphAODU(null, unidade.getGrafo());
 		codigo = new PainelCodigo(unidade);
 		

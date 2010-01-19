@@ -12,10 +12,13 @@ public class TMSize implements TMComputeSize {
 
 	@Override
 	public float getSize(TMNode tNode) throws TMExceptionBadTMNodeKind {
-		if (tNode instanceof TMTreeClass) {
-			return 10.0f;
+		if (tNode instanceof TMTreeNode) {
+			TMTreeNode tMethod = (TMTreeNode) tNode;
+			// TODO: acabei de comentar aqui... vou mudar para fixo 1.0 também.
+			//System.out.println(tMethod.getSize());
+			return 1.0f; //tMethod.getSize();
 		} else {
-			return 1.0f;
+			return 0.0f;
 		}
 	}
 

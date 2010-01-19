@@ -14,13 +14,15 @@ public class TMTreeNode implements TMNode {
 	String nome;
 	String desc;
 	boolean isMetodo;
-	
+	float size;
+
 	public TMTreeNode(String nome, String desc, boolean isMetodo) {
 		this.nome = nome;
 		this.desc = desc;
 		this.isMetodo = isMetodo;
+		this.size = 1;
 	}
-	
+
 	@Override
 	public Enumeration children() {
 		return new Vector<TMNode>().elements();
@@ -34,24 +36,35 @@ public class TMTreeNode implements TMNode {
 	@Override
 	public void setUpdater(TMUpdater arg0) {
 		// TODO criar o Updater do TMTreeNode
-		
+
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-	
+
 	public String getDesc() {
 		return desc;
 	}
 	
-		
+	public void setSize(float size) {
+		this.size = size;
+	}
+	
+	public float getSize() {
+		return size;
+	}
+
+	public void incSize() {
+		this.size++;
+	}
+
 }

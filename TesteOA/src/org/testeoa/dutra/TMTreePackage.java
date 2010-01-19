@@ -57,5 +57,13 @@ public class TMTreePackage implements TMNode {
 	public String getDescription() {
 		return "Pacote: " + nome.replace('/', '.').substring(0, nome.length()-1);
 	}
+	
+	public String getSimpleDescription() {
+		return nome.replace('/', '.').substring(0, nome.length()-1);
+	}
 
+	public Vector<TMTreeClass> getClasses() {
+		return this.children;
+	}
+	
 }

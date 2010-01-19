@@ -53,5 +53,9 @@ public class TMTreeRoot implements TMNode {
 	public String getNome() {
 		return nome;
 	}
+	
+	public Vector<TMTreePackage> getPackages() {
+		return this.children;
+	}
 
 }

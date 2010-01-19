@@ -268,6 +268,7 @@ public class NodeProjeto extends NodeAP {
 	}
 	
 	public void inserirNodeClasse(Classe c) {
+	    
 		int i = 0;
 		for(; i < getChildCount(); i++) {
 			if (getChildAt(i) instanceof NodeAspecto) {				

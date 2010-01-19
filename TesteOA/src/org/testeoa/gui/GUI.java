@@ -43,7 +43,6 @@ import javax.swing.tree.MutableTreeNode;
 
 import org.testeoa.dinamica.AnaliseDinamica;
 import org.testeoa.dutra.LeoLoader;
-import org.testeoa.dutra.TMTreeHandler;
 import org.testeoa.dutra.TMTreeRoot;
 import org.testeoa.dutra.TMViewer;
 import org.testeoa.dutra.Unidade;
@@ -93,7 +92,7 @@ public class GUI extends JFrame {
 	JButton btRem;
 	JButton btImpLeo;
 	
-	TMTreeRoot TMRoot = null;
+	public static TMTreeRoot TMRoot = null;
 
 	public GUI() {
 		super("TesteOA");
@@ -295,7 +294,9 @@ public class GUI extends JFrame {
 		btExec.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				((NodeTeste) arvore.getSelecionado()).executar();
-				System.out.println(AnaliseDinamica.contagem);
+				
+				doTreeMap();
+				
 			}
 		});
 		barraSup.add(btExec);
@@ -318,9 +319,15 @@ public class GUI extends JFrame {
 		btRem.setToolTipText("Remover");
 		btRem.setEnabled(false);
 
-		btImpLeo = new JButton("imp leo");
-		btImpLeo.setToolTipText("Importa Projeto Leo");
+		btImpLeo = new JButton("Importar Projeto");
+		btImpLeo.setToolTipText("Importar Projeto");
 		btImpLeo.setEnabled(true);
+		btImpLeo.setUI(new BasicButtonUI() {
+			@Override
+			public Dimension getPreferredSize(JComponent arg0) {
+				return new Dimension(120, 30);
+			}
+		});
 		btImpLeo.addActionListener(new ActionListener() {
 
 			@Override
@@ -371,6 +378,7 @@ public class GUI extends JFrame {
 
 			// Modelo
 			Projeto p = new Projeto(nome);
+			p.setFile(loader.getFileFile().getAbsolutePath());
 			Ambiente.inserirProjeto(p);
 			// GUI
 			NodeProjeto np = new NodeProjeto(arvore, p);
@@ -454,11 +462,15 @@ public class GUI extends JFrame {
 
 			}
 			np.expandir();
-			TMViewer tViewer = new TMViewer(nome, TMRoot);
-			conteudo.add(tViewer);
-			tViewer.setVisible(true);
+			//doTreeMap();
 		}
 
+	}
+	
+	public void doTreeMap() {
+		TMViewer tViewer = new TMViewer("TreeMap", TMRoot);
+		conteudo.add(tViewer);
+		tViewer.setVisible(true);
 	}
 
 	public void atualizarBarra(Object sel) {

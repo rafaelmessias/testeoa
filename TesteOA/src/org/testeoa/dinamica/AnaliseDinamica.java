@@ -26,10 +26,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+import org.testeoa.dutra.TMTreeClass;
+import org.testeoa.dutra.TMTreeNode;
+import org.testeoa.dutra.TMTreePackage;
 import org.testeoa.grafo.AODU;
 import org.testeoa.grafo.AODUComb;
 import org.testeoa.grafo.Aresta;
 import org.testeoa.grafo.Vertice;
+import org.testeoa.gui.GUI;
 import org.testeoa.modelo.Metodo;
 
 /**
@@ -44,8 +48,8 @@ public class AnaliseDinamica {
 	private static Stack<Metodo> pilha = new Stack<Metodo>();
 
 	private static Caminho caminho = new Caminho();
-
-	public static Map<String, Integer> contagem = new HashMap<String, Integer>();
+	
+	public static float maxSize = 0.0f;
 
 	public static void reiniciar() {
 		grafo = null;
@@ -83,14 +87,31 @@ public class AnaliseDinamica {
 
 	public static void UNIDADE(String owner, String nome, String desc) {
 		// Leo
-		Integer cont = contagem.get(owner+"-"+nome+"-"+desc);
-		if (cont == null) {
-			cont = 1;
-		} else {
-			cont++;
+		
+
+		String pack = owner.substring(0, owner.lastIndexOf("."));
+		String clazz = owner.substring(owner.lastIndexOf(".") + 1);
+		for (TMTreePackage tPackage : GUI.TMRoot.getPackages()) {
+			if (!tPackage.getSimpleDescription().equals(pack)) {
+				continue;
+			}
+			for (TMTreeClass tClass : tPackage.getClasses()) {
+				if (!tClass.getSimpleDescription().equals(clazz)) {
+					continue;
+				}
+				for (TMTreeNode tNode : tClass.getNodes()) {
+					if (!tNode.getNome().equals(nome)) {
+						continue;
+					}
+					tNode.incSize();
+					if (tNode.getSize() > maxSize) {
+						maxSize = tNode.getSize();
+					}
+				}
+
+			}
+
 		}
-		contagem.put(owner+"-"+nome+"-"+desc, cont);
-		// fim Leo
 		for (Metodo u : unidades) {
 			if (u.getClasse().getNome().equals(owner)) {
 				if (u.getNome().equals(nome) && u.getDesc().equals(desc)) {

@@ -60,6 +60,45 @@ public class LeoLoader {
         
     }
     
+    public void loadJar(String fileName) {
+    	file = new File(fileName);
+    	if (file == null) {
+            System.out.println("não conseguiu carregar o arquivo!!!");
+            System.exit(0);
+        }
+    	
+        try {
+            zipLoader = new ZipClassLoader(file.getPath());
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+        
+        Enumeration<? extends ZipEntry> list = zipLoader.getZipFile().entries();
+        ZipEntry entry;
+        
+        String classPackage;
+        String className;
+        String classURL;
+        jarName = file.getName();
+
+        while (list.hasMoreElements()) {
+            entry = list.nextElement();
+            if (entry.toString().toLowerCase().endsWith(".class") && (!entry.toString().toLowerCase().contains("$")) ) {
+                classPackage = entry.getName().substring(0, entry.getName().lastIndexOf("/") + 1);
+                className = entry.getName().substring(entry.getName().lastIndexOf("/") + 1);
+                classURL = classPackage.replace('/', '.') + className.substring(0, className.lastIndexOf('.'));
+                lista.add(new Unidade(classPackage, className, classURL));
+            }
+        }
+        
+        try {
+			ClassPathHacker.addFile(file);
+		} catch (IOException e) {
+			
+		}
+        
+    }
+    
     public File getFile() {
         if (fileChooser == null) {
             fileChooser = new JFileChooser();
@@ -101,4 +140,9 @@ public class LeoLoader {
     public String getFileName() {
     	return file.getName();
     }
+    
+    public File getFileFile(){
+    	return this.file;
+    }
+    
 }
