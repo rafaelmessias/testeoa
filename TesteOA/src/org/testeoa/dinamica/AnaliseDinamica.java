@@ -86,9 +86,8 @@ public class AnaliseDinamica {
 	}
 
 	public static void UNIDADE(String owner, String nome, String desc) {
-		// Leo
+		// TesteOA-H
 		
-
 		String pack = owner.substring(0, owner.lastIndexOf("."));
 		String clazz = owner.substring(owner.lastIndexOf(".") + 1);
 		for (TMTreePackage tPackage : GUI.TMRoot.getPackages()) {
@@ -112,6 +111,8 @@ public class AnaliseDinamica {
 			}
 
 		}
+		// Fim TesteOA-H
+		
 		for (Metodo u : unidades) {
 			if (u.getClasse().getNome().equals(owner)) {
 				if (u.getNome().equals(nome) && u.getDesc().equals(desc)) {

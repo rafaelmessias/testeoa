@@ -9,7 +9,7 @@ import java.util.zip.ZipEntry;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
-public class LeoLoader {
+public class TMLoader {
 	
 	private ZipClassLoader zipLoader = null;
     private JFileChooser fileChooser = null;
@@ -17,7 +17,7 @@ public class LeoLoader {
     private ArrayList<Unidade> lista = null;
     String jarName = null;
     
-    public LeoLoader() {
+    public TMLoader() {
         lista = new ArrayList<Unidade>();
     }
     
@@ -44,7 +44,7 @@ public class LeoLoader {
 
         while (list.hasMoreElements()) {
             entry = list.nextElement();
-            if (entry.toString().toLowerCase().endsWith(".class") && (!entry.toString().toLowerCase().contains("$")) ) {
+            if ( (entry.toString().toLowerCase().endsWith(".class") || entry.toString().toLowerCase().endsWith(".aj")) && (!entry.toString().toLowerCase().contains("$")) ) {
                 classPackage = entry.getName().substring(0, entry.getName().lastIndexOf("/") + 1);
                 className = entry.getName().substring(entry.getName().lastIndexOf("/") + 1);
                 classURL = classPackage.replace('/', '.') + className.substring(0, className.lastIndexOf('.'));
@@ -83,7 +83,7 @@ public class LeoLoader {
 
         while (list.hasMoreElements()) {
             entry = list.nextElement();
-            if (entry.toString().toLowerCase().endsWith(".class") && (!entry.toString().toLowerCase().contains("$")) ) {
+            if ((entry.toString().toLowerCase().endsWith(".class") || entry.toString().toLowerCase().endsWith(".aj")) && (!entry.toString().toLowerCase().contains("$")) ) {
                 classPackage = entry.getName().substring(0, entry.getName().lastIndexOf("/") + 1);
                 className = entry.getName().substring(entry.getName().lastIndexOf("/") + 1);
                 classURL = classPackage.replace('/', '.') + className.substring(0, className.lastIndexOf('.'));

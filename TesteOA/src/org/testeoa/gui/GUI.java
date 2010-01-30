@@ -42,7 +42,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.tree.MutableTreeNode;
 
 import org.testeoa.dinamica.AnaliseDinamica;
-import org.testeoa.dutra.LeoLoader;
+import org.testeoa.dutra.TMLoader;
 import org.testeoa.dutra.TMTreeRoot;
 import org.testeoa.dutra.TMViewer;
 import org.testeoa.dutra.Unidade;
@@ -373,7 +373,7 @@ public class GUI extends JFrame {
 				"Nome do Projeto: ", title, mType);
 		if (nome != null) {
 
-			LeoLoader loader = new LeoLoader();
+			TMLoader loader = new TMLoader();
 			loader.loadJar();
 
 			// Modelo

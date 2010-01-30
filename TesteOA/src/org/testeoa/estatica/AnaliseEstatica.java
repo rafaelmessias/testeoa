@@ -49,7 +49,7 @@ public class AnaliseEstatica extends ClassLoader {
 			cr.accept(cn, ClassReader.SKIP_FRAMES);
 			
 			if (isAspecto(cn)) {
-				throw new ExAnaliseEstatica("[" + nome + "] nÃ£o ï¿½ uma classe.", 
+				throw new ExAnaliseEstatica("[" + nome + "] não é uma classe.", 
 						null);
 			}
 			
@@ -83,7 +83,7 @@ public class AnaliseEstatica extends ClassLoader {
 			cr.accept(cn, ClassReader.SKIP_FRAMES);
 			
 			if (!isAspecto(cn)) {
-				throw new ExAnaliseEstatica("[" + nome + "] nï¿½o ï¿½ um aspecto.", 
+				throw new ExAnaliseEstatica("[" + nome + "] não é um aspecto.", 
 						null);
 			}
 			
@@ -122,8 +122,8 @@ public class AnaliseEstatica extends ClassLoader {
 			cr.accept(cn, ClassReader.SKIP_FRAMES);
 			
 			if (!isCasoTeste(cn)) {
-				throw new ExAnaliseEstatica("[" + nome + "] nï¿½o ï¿½ um caso de " +
-						"teste JUnit vï¿½lido.", null);
+				throw new ExAnaliseEstatica("[" + nome + "] não é um caso de " +
+						"teste JUnit válido.", null);
 			}
 			
 			CasoTeste ct = new CasoTeste(nome);
@@ -220,7 +220,7 @@ public class AnaliseEstatica extends ClassLoader {
 				ct.setCodigo(loadClass(ct.getNome()));
 			}
 			catch (ClassNotFoundException e2) {
-				// nï¿½o vai acontecer
+				// não vai acontecer
 			}
 		}
 	}

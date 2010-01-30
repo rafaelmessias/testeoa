@@ -107,29 +107,11 @@
 
 
 
-<projeto file="C:\Users\Leo\Documents\exemplo.jar" nome="teste">
-<classe nome="exemplo.Conta">
-<metodo desc="()Ljava/lang/String;" nome="getTitular"/>
-<metodo desc="()I" nome="getNumero"/>
-<metodo desc="()F" nome="getSaldo"/>
-<metodo desc="(F)V" nome="saque"/>
-<metodo desc="(F)V" nome="deposito"/>
-</classe>
-<classe nome="exemplo.Terminal">
-<metodo desc="(IIF)V" nome="transferencia"/>
-<metodo desc="(Lexemplo/Conta;)V" nome="inserirConta"/>
-<metodo desc="(I)V" nome="removerConta"/>
-<metodo desc="(I)Lexemplo/Conta;" nome="getConta"/>
-</classe>
-<classe nome="exemplo.excecoes.ExcecaoContaInexistente">
-<metodo desc="()I" nome="getNumero"/>
-</classe>
-<classe nome="exemplo.excecoes.ExcecaoSaldoInsuficiente">
-<metodo desc="()I" nome="getNumConta"/>
-<metodo desc="()F" nome="getValor"/>
-</classe>
-<teste caso="exemplo.TesteTransferencia" tipo="0">
-<unidade desc="(IIF)V" nome="transferencia" owner="exemplo.Terminal" tipo="metodo"/>
-</teste>
-</projeto>
+
+
+
+
+
+
+
 </ambiente>

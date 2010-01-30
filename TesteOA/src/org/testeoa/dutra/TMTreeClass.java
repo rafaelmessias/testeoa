@@ -57,11 +57,20 @@ public class TMTreeClass implements TMNode {
 	}
 	
 	public String getDescription() {
-		return "Classe: " + nome.substring(0, nome.indexOf(".class"));
+		if (nome.contains(".class")) {
+			return "Classe: " + nome.substring(0, nome.indexOf(".class"));
+		} else {
+			return "Classe: " + nome.substring(0, nome.indexOf(".aj"));
+		}
+		
 	}
 	
 	public String getSimpleDescription() {
-		return nome.substring(0, nome.indexOf(".class"));
+		if (nome.contains(".class")) {
+			return nome.substring(0, nome.indexOf(".class"));
+		} else {
+			return nome.substring(0, nome.indexOf(".aj"));
+		}
 	}
 
 	public Vector<TMTreeNode> getNodes() {

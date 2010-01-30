@@ -48,7 +48,7 @@ import org.testeoa.criterios.TodosVertices;
 import org.testeoa.criterios.TodosVerticesDepExcecao;
 import org.testeoa.criterios.TodosVerticesIndepExcecao;
 import org.testeoa.criterios.TodosVerticesTransversais;
-import org.testeoa.dutra.LeoLoader;
+import org.testeoa.dutra.TMLoader;
 import org.testeoa.dutra.TMTreeRoot;
 import org.testeoa.dutra.Unidade;
 import org.testeoa.estatica.AnaliseEstatica;
@@ -124,7 +124,7 @@ public class DocumentoXML {
 	public Projeto criar(Element ep) {
 		Projeto p = new Projeto(ep.getAttribute("nome"));
 		p.setFile(ep.getAttribute("file"));
-		LeoLoader loader = new LeoLoader();
+		TMLoader loader = new TMLoader();
 		loader.loadJar(ep.getAttribute("file"));
 		
 		//TODO mexi aqui!!!
