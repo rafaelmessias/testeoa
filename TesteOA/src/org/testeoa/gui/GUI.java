@@ -90,7 +90,7 @@ public class GUI extends JFrame {
 	JButton btVis;
 	JButton btExec;
 	JButton btRem;
-	JButton btImpLeo;
+	JButton btImpProjeto;
 	
 	public static TMTreeRoot TMRoot = null;
 
@@ -319,24 +319,24 @@ public class GUI extends JFrame {
 		btRem.setToolTipText("Remover");
 		btRem.setEnabled(false);
 
-		btImpLeo = new JButton("Importar Projeto");
-		btImpLeo.setToolTipText("Importar Projeto");
-		btImpLeo.setEnabled(true);
-		btImpLeo.setUI(new BasicButtonUI() {
+		btImpProjeto = new JButton("Importar Projeto");
+		btImpProjeto.setToolTipText("Importar Projeto");
+		btImpProjeto.setEnabled(true);
+		btImpProjeto.setUI(new BasicButtonUI() {
 			@Override
 			public Dimension getPreferredSize(JComponent arg0) {
 				return new Dimension(120, 30);
 			}
 		});
-		btImpLeo.addActionListener(new ActionListener() {
+		btImpProjeto.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				doLeo();
+				doImpProjeto();
 			}
 		});
 
-		barraSup.add(btImpLeo);
+		barraSup.add(btImpProjeto);
 
 		add(barraSup, BorderLayout.NORTH);
 
@@ -365,7 +365,7 @@ public class GUI extends JFrame {
 		setVisible(true);
 	}
 
-	private void doLeo() {
+	private void doImpProjeto() {
 
 		String title = "Novo Projeto";
 		int mType = JOptionPane.QUESTION_MESSAGE;
